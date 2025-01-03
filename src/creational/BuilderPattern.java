@@ -7,7 +7,7 @@ class Car {
     private final String color;
 
     // Constructor is private so it cannot be directly instantiated
-    private Car(Builder builder) {
+    private Car(CarBuilder builder) {
         this.engineType = builder.engineType;
         this.wheelType = builder.wheelType;
         this.seatType = builder.seatType;
@@ -20,28 +20,31 @@ class Car {
     }
 
     // Static Builder Class
-    public static class Builder {
-        private String engineType;
+    public static class CarBuilder {
+        private final String engineType;
         private String wheelType;
         private String seatType;
         private String color;
 
-        public Builder setEngineType(String engineType) {
+        // Setter methods for mandatory fields
+        public CarBuilder(String engineType) {
             this.engineType = engineType;
-            return this;
         }
 
-        public Builder setWheelType(String wheelType) {
+        // Setter methods for optional fields
+        public CarBuilder setWheelType(String wheelType) {
             this.wheelType = wheelType;
             return this;
         }
 
-        public Builder setSeatType(String seatType) {
+        // Setter methods for optional fields
+        public CarBuilder setSeatType(String seatType) {
             this.seatType = seatType;
             return this;
         }
 
-        public Builder setColor(String color) {
+        // Setter methods for optional fields
+        public CarBuilder setColor(String color) {
             this.color = color;
             return this;
         }
@@ -54,8 +57,7 @@ class Car {
 public class BuilderPattern {
     public static void main(String[] args) {
         // Build a car using the builder
-        Car car = new Car.Builder()
-                .setEngineType("Electric")
+        Car car = new Car.CarBuilder("Electric")
                 .setWheelType("Alloy")
                 .setSeatType("Leather")
                 .setColor("Red")
